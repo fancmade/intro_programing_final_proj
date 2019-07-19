@@ -1,0 +1,115 @@
+---
+title: "Final Project"
+author: "Maddie Fancher"
+date: "7/15/2019"
+output:
+  html_document: default
+  pdf_document: default
+bibliography: finalprojbibliography.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Background 
+
+Mental Health awareness is growing dramatically along with treatments and activities people can do in order to improve it. Some of the ways people's mental health have been through different activities like exercise, mindfulness, and meditation. Meditation is the ability to focus one's mind in silence to help an individual relax, ease stress, and improve mental state. 
+
+##Test Question
+How does meditation affect an individual and is it a significant difference?
+
+In this document I will:
+
+1. Load data and packages required
+2. Process data
+3. Visualize the data by creating graphs
+4. Analyze the Data
+5. Make conclusions based on the data and answer the test
+
+##Packages Required
+In order to carry out the functions that are needed, we will need to load two packages into Rstudio. One package will be dplyr and the other will be ggplot2. Do so by following the code below. 
+```{r, message=FALSE}
+library(dplyr)
+library(ggplot2)
+```
+
+#Data
+##Downloading and Importing Data
+In this part, the data needs to be imported so that it can be processed and visualized. To do so, a function needs to be written to make it easier to import data into other codes. The function should be named and the csv file should be read in. 
+```{r}
+meditation <- read.csv('~/Desktop/Intro to Programming/Working Directory for 5.28.19/Final Project/data/meditation data.csv')
+```
+
+##Loading in Meditation Table
+In order to see the data that was read in then the data needs to be loaded into a table. This is done by head(), which only shows the first 6 data points and summary(), which shows all of the data.
+```{r}
+head(meditation)
+summary(meditation)
+```
+
+#Visualize Data
+GGPLOT will be used in this part to visualize the data. In this section, the data will be split up first, to visualize the affects of only two conditions like (not)vacationing and (not)meditating. 
+
+##Not Vacationing and Not Meditating:  
+```{r}
+ggplot(data = meditation) + 
+  geom_point(aes(x=Outcome.Variable, y=Not.Vacationing..Not.MeditatingM..SE.n.obs...1016), size=3,color="blue",alpha=0.5) +
+  labs(title="The Effect of Not Vacationing and Not Meditating",x="Outcome Variable", y="Not Vacationing and Not Meditating")
+```
+
+
+Figure 1: This graph visualizes the data for what happens when individuals would not vacation and not meditate.
+
+##Not Vacationing and Meditating 
+```{r}
+ggplot(data = meditation) + 
+  geom_point(aes(x=Outcome.Variable, y=Not.Vacationing..MeditatingM..SE.n.obs...797), size=3,color="orange",alpha=0.5) +
+  labs(title="The Effect of Not Vacationing and Meditating",x="Outcome Variable", y="Not Vacationing and Meditating")
+```
+
+
+Figure 2: This graph visualizes the data for what happens when individuals would not vacation and would meditate.
+
+##Vacationing and Not Meditating  
+```{r}
+ggplot(data = meditation) + 
+  geom_point(aes(x=Outcome.Variable, y=Vacationing..Not.MeditatingM..SE.n.obs...142), size=3,color="red",alpha=0.5) +
+  labs(title="The Effect of Vacationing and Not Meditating",x="Outcome Variable", y="Vacationing and Not Meditating")
+```
+
+
+Figure 3: This graph visualizes the data for what happens when individuals would vacation and would not meditate. 
+
+##Vacationing and Meditating 
+```{r}
+ggplot(data = meditation) + 
+  geom_point(aes(x=Outcome.Variable, y=Vacationing..MeditatingM..SE.n.obs...67), size=3,color="green",alpha=0.5) +
+  labs(title="The Effect of Vacationing and Meditating",x="Outcome Variable", y="Vacationing and Meditating")
+```
+
+
+Figure 4: This graph visualizes the data for what happens when individuals would vacation and meditate. 
+ 
+##The Effect of Meditation vs Vacation
+```{r}
+ggplot(data = meditation) + 
+  geom_point(aes(x=Outcome.Variable, y=Not.Vacationing..Not.MeditatingM..SE.n.obs...1016), size=3,color="blue",alpha=0.5) +
+  geom_point(aes(x=Outcome.Variable, y=Vacationing..MeditatingM..SE.n.obs...67), size=3,color="green",alpha=0.5) +
+  geom_point(aes(x=Outcome.Variable, y=Vacationing..Not.MeditatingM..SE.n.obs...142), size=3,color="red",alpha=0.5) +
+  geom_point(aes(x=Outcome.Variable, y=Not.Vacationing..MeditatingM..SE.n.obs...797), size=3,color="orange",alpha=0.5) +
+  labs(title="The Effect of Meditation vs Vacationing",x="Outcome Variable", y="Not Vacationing and Not Meditating")
+```
+
+
+Figure 5: This graph visualizes the data for all of the possible conditions.
+
+
+#Analysis
+The data present in these graphs show an interesting trend regarding meditation and vacationing. Figure 1 acts as a control variable, as it shows the effects of neither vacationing nor meditating. This can be used as a measuring stick for the other data. In Figure 2, we can see the effects of not vacationing and meditating. Interestingly enough the data doesn't change at all when only meditation is added to the individual's routine. This is also the case when the individual both vacations and meditates. There is a small difference however, and that is that the nonreact and observe outcomes were flipped, with nonreact being higher for the meditation route, and observing being higher for the vacationing route. Lastly, the largest takeaway from this data is what occurs when an individual only vacations. Remarkably, this scenario had both the highest positive affect and the lowest negative affect.
+
+#Conclusion 
+Before starting the project and looking into the data, I was expecting individuals who vacationed and meditated to have the highest positive affect and the lowest negative affect. I was very surprised to find that it was actually those who did vacation and did not meditate had the highest positive affect and the lowest negative affect. I would imagine that it would be the most helpful to vacation and meditate. I was also surprised that individuals who did not vacation, but did meditate did not have a higher positive affect and lower negative affect than what they did. From this research, I conclude that it would be most helpful to individuals to forgo meditation, and only vacation. I also believe that more research needs to be done. I think that the population group should increase so that there is a larger sample size reflected in the data. It would be interesting to see how much the data would change based on an increase in population/ participation.  
+
+#References
+'The relative impact of 15-minutes of meditation compared to a day of vacation in daily life: An exploratory analysis' [@may2019relative]
